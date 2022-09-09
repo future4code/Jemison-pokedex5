@@ -7,7 +7,7 @@ function Context(props) {
   const [allPokemons, setAllPokemons] = useState([])
   const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
   const [idPokemon, setIdPokemon] = useState([])
-  const [pokedex, setPokedex] = useState({})
+  const [pokedex, setPokedex] = useState([])
 
 
   //renderizando a api

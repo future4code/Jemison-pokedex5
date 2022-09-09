@@ -12,17 +12,18 @@ function Pokedex() {
         pokedex,
         setPokedex,
         idPokemon,
+        setIdPokemon,
         removePokemon
     } = useContext(GlobalStateContext);
     
 
     useEffect(() => {
         getPokedex()
-    }, [])
+    }, [idPokemon])
 
     const getPokedex = () =>{
         axios
-          .get(`https://pokeapi.co/api/v2/pokemon/1/`)
+          .get(`https://pokeapi.co/api/v2/pokemon/${idPokemon}/`)
           .then((response) => {
             setPokedex(response.data);
           })
@@ -38,28 +39,32 @@ function Pokedex() {
                 <h3>{name}</h3>
                 <p>Type: {type}</p>
                 </div>
-            }else{ 
+            }else if(pokedex && pokedex === 0){ 
                 <p>Algo deu errado</p>
              }
     }
-    console.log(pokedex)
+    console.log(idPokemon)
+    console.log(getPokedex)
+
 
     return (
-        <div>
+        <div className="app-container">
             <h1>Pokedex</h1>
- 
                 <div>
-                <Card
-                image={pokedex.sprites.other.dream_world.front_default}
-                name={pokedex.name}
-                type={pokedex.types[0].type.name}
-                />
-                 
-                <button onClick={() => removePokemon(pokedex)} >Remover</button>
+                    <div className="pokemon-container">
+                        <div className="all-container">
+                        <Card
+                            image={pokedex.sprites.other.dream_world.front_default}
+                            name={pokedex.name}
+                            type={pokedex.types[0].type.name}
+                            />
+                        </div>   
+                            <button onClick={() => removePokemon(pokedex)} >Remover</button>
+                    </div>
                 </div>
 
-                <button onClick={() => goToDetailPage(navigate)}>DetailPage</button>
-                <button onClick={() => goToHome(navigate)}>Home</button>
+                <button className="go"  onClick={() => goToDetailPage(navigate)}>DetailPage</button>
+                <button className="go"  onClick={() => goToHome(navigate)}>Home</button>
         </div>
     )
 }
