@@ -46,14 +46,19 @@ function Home() {
                 <div className="detail-wrapper">
                     <h3>{name}</h3>
                     <small>Type: {type}</small>
-                    {botao}
-                    <Button onClick={() => goToDetailPage(navigate)}>detalhes</Button>
 
+                    {botao}
+                    <button onClick={() => pokemonDetail(id)} >detalhes</button>
                 </div>
             </div>
 
         );
     }
+    
+    const pokemonDetail = (id) => {
+        goToDetailPage(navigate, id)
+    }
+
 
     return (
         <div>
