@@ -1,16 +1,22 @@
-# POKEDEX
+# 🕹POKEDEX 
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+
+- Guilherme Azevedo Melim
+
+- Rhuan Victor Virtudes Lourenço
+
+- Roberta Vieira de Melo
+
 
 Link do Surge: www.link.com.br
 
-O que funciona:
-- Item 1
-- Item 2
 
-O que não funciona: 
+✅ O que funciona:
+- Listagem dos pokémons: Listar os pokémons com o uso da API.
+-
+
+
+❌ O que não funciona: 
 - Item 3
 - Item 4

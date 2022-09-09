@@ -1,7 +1,9 @@
+
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
 import GlobalStateContext from '../../context/GlobalContext';
 import {goToDetailPage, goToPokedex} from '../../routes/coordinator'
+
 
 function Home() {
     const navigate = useNavigate()
@@ -19,6 +21,7 @@ function Home() {
     
     //renderizando os pokemons
     const Rend = ({ id, image, name, type}) => {
+
         const style = type + " thumb-container";
         
         //pegando id com o botao adicionar
@@ -36,23 +39,23 @@ function Home() {
             <div className={style}>
                 <div className="number"><small>Carde Nº{id}</small></div>
                 <img src={image} alt={name} />
-                <div className="detalhe">
+                <div className="detail-wrapper">
                     <h3>{name}</h3>
                     <small>Type: {type}</small>
                     {botao}
                     <button>detalhes</button>
+
                 </div>
             </div>
         );
     }
-    
+
     return (
         <div>
-            <div>Home</div>
             <div className="app-container">
                 <h1>Lista de Pokémons</h1>
                 <div className="pokemon-container">
-                    <div className="todos-container">
+                    <div className="all-container">
                         {allPokemons.map((pokemonStats, index) =>
                             <Rend
                                 key={index}
@@ -62,14 +65,18 @@ function Home() {
                                 type={pokemonStats.types[0].type.name}
                             />)}
                     </div>
-                    <button className="carregar" onClick={() => getAllPokemons()}>Carregando..</button>
+                    <button className="load-more" onClick={() => getAllPokemons()}>Carregando..</button>
                 </div>
             </div>
 
-            <button onClick={() => goToDetailPage(navigate)}>DetailPage</button>
-            <button onClick={() => goToPokedex(navigate)}>Pokedex</button>
+            <button className="go" onClick={() => goToDetailPage(navigate)}>DetailPage</button>
+            <button className="go" onClick={() => goToPokedex(navigate)}>Pokedex</button>
         </div>
-    )
+    );
 }
 
 export default Home;
+
+
+
+
