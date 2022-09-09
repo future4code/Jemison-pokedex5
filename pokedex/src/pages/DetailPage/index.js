@@ -2,6 +2,7 @@ import React from  'react';
 import { useNavigate } from 'react-router-dom'
 import {goToHome, goToPokedex} from '../../routes/coordinator'
 
+
 function DetailPage() {
 
     const navigate = useNavigate()

@@ -1,13 +1,14 @@
 import React from 'react';
 import './App.css';
+import Context from './context/GlobalStates';
 import Router from './routes/router';
 
 
 function App() {
   return (
-    <div>
+    <Context>
       <Router />
-    </div>
+    </Context>
   );
 }
 
