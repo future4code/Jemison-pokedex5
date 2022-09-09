@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { goToDetailPage, goToPokedex } from '../../routes/coordinator';
-
+import { Card, Number, Small, Image, Detail, Button, App, Title, Pokemon, All, Load } from './styled';
 
 function Home() {
 
@@ -33,27 +33,28 @@ function Home() {
 
 
     const Rend = ({ id, image, name, type }) => {
-        const style = type + " thumb-container";
+        const style = type + " Thumb";
+
         return (
-            <div className={style}>
-                <div className="number"><small>#0{id}</small></div>
-                <img src={image} alt={name} />
-                <div className="detail-wrapper">
+            <Card className={style}>
+                <Number className="number"><Small>nº 0{id}</Small></Number>
+                <Image src={image} alt={name} />
+                <Detail className="detail-wrapper">
                     <h3>{name}</h3>
                     <small>Type: {type}</small>
-                    <button onClick={() => goToPokedex(navigate)}>adicionar</button>
-                    <button onClick={() => goToDetailPage(navigate)}>detalhes</button>
-                </div>
-            </div>
+                    <Button onClick={() => goToPokedex(navigate)}>adicionar</Button>
+                    <Button onClick={() => goToDetailPage(navigate)}>detalhes</Button>
+                </Detail>
+            </Card>
         );
     }
 
     return (
         <div>
-            <div className="app-container">
-                <h1>Lista de Pokémons</h1>
-                <div className="pokemon-container">
-                    <div className="all-container">
+            <App className="app-container">
+                <Title>Lista de Pokémons</Title>
+                <Pokemon className="pokemon-container">
+                    <All className="all-container">
                         {allPokemons.map((pokemonStats, index) =>
                             <Rend
                                 key={index}
@@ -62,13 +63,10 @@ function Home() {
                                 name={pokemonStats.name}
                                 type={pokemonStats.types[0].type.name}
                             />)}
-                    </div>
-                    <button className="load-more" onClick={() => getAllPokemons()}>Carregando..</button>
-                </div>
-            </div>
-
-            <button className="go" onClick={() => goToDetailPage(navigate)}>DetailPage</button>
-            <button className="go" onClick={() => goToPokedex(navigate)}>Pokedex</button>
+                    </All>
+                    <Load className="load-more" onClick={() => getAllPokemons()}>Carregando..</Load>
+                </Pokemon>
+            </App>
         </div>
     );
 }
