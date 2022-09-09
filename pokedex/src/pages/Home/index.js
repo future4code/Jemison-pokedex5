@@ -41,12 +41,16 @@ function Home() {
                     <h3>{name}</h3>
                     <small>Type: {type}</small>
                     <button>adicionar</button>
-                    <button>detalhes</button>
+                    <button onClick={() => pokemonDetail(id)} >detalhes</button>
                 </div>
             </div>
         );
     }
     
+    const pokemonDetail = (id) => {
+        goToDetailPage(navigate, id)
+    }
+
     return (
         <div>
             <div>Home</div>
