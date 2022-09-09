@@ -1,48 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { goToDetailPage, goToPokedex } from '../../routes/coordinator';
+
+import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom'
+import GlobalStateContext from '../../context/GlobalContext';
+import {goToDetailPage, goToPokedex} from '../../routes/coordinator'
 
 
 function Home() {
-
     const navigate = useNavigate()
+    
+    //informações vindo do globalStates
+    const  {
+        allPokemons,
+        idPokemon,
+        getAllPokemons,
+        addToPokedex
+    } = useContext(GlobalStateContext);
 
-    useEffect(() => {
-        getAllPokemons()
-    }, [])
+    //sere para ver se esta pegando o id para pokedex
+    console.log( `Ola ${idPokemon}`) 
+    
+    //renderizando os pokemons
+    const Rend = ({ id, image, name, type}) => {
 
-    const [allPokemons, setAllPokemons] = useState([])
-    const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
-
-    const getAllPokemons = async () => {
-        const res = await fetch(loadMore)
-        const data = await res.json()
-
-        setLoadMore(data.next)
-
-        function createPokemonObject(results) {
-            results.forEach(async pokemon => {
-                const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-                const data = await res.json()
-                setAllPokemons(currentList => [...currentList, data])
-            })
-        }
-        createPokemonObject(data.results)
-        console.log(data.results)
-    }
-
-
-    const Rend = ({ id, image, name, type }) => {
         const style = type + " thumb-container";
+        
+        //pegando id com o botao adicionar
+        let botao 
+        if(idPokemon.find(element => element == id)){
+           botao = <button disabled={true} onClick={()=> addToPokedex(id)} >adicionar</button>
+
+        }else{
+            botao = <button  onClick={()=> addToPokedex(id)} >adicionar</button>
+
+        }
+
+        //Renderizando a lista em card
         return (
             <div className={style}>
-                <div className="number"><small>#0{id}</small></div>
+                <div className="number"><small>Carde Nº{id}</small></div>
                 <img src={image} alt={name} />
                 <div className="detail-wrapper">
                     <h3>{name}</h3>
                     <small>Type: {type}</small>
-                    <button onClick={() => goToPokedex(navigate)}>adicionar</button>
-                    <button onClick={() => goToDetailPage(navigate)}>detalhes</button>
+                    {botao}
+                    <button>detalhes</button>
+
                 </div>
             </div>
         );
