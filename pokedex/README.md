@@ -1,6 +1,5 @@
 # 🕹POKEDEX 
 
-
 ## 💻 Projeto
 
  Desenvolver uma plataforma web para listagem e visualização de pokémons. Todos os dados sobre os pokémons como nome, número, tipo, imagem e entre outras coisas, foram possíveis com o uso da API Poke Api.
@@ -30,3 +29,4 @@ Link do Surge: www.link.com.br
 - Styled-components
 - React Router Dom
 - 
+

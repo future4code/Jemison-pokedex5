@@ -1,51 +1,57 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import GlobalStateContext from '../../context/GlobalContext';
 import { goToDetailPage, goToPokedex } from '../../routes/coordinator';
 import { Card, Number, Small, Image, Detail, Button, App, Title, Pokemon, All, Load } from './styled';
 
+
 function Home() {
-
     const navigate = useNavigate()
+    
+    //informações vindo do globalStates
+    const  {
+        allPokemons,
+        idPokemon,
+        getAllPokemons,
+        addToPokedex
+    } = useContext(GlobalStateContext);
 
-    useEffect(() => {
-        getAllPokemons()
-    }, [])
+    //sere para ver se esta pegando o id para pokedex
+    console.log( `Ola ${idPokemon}`) 
+    
+    //renderizando os pokemons
+    const Rend = ({ id, image, name, type}) => {
 
-    const [allPokemons, setAllPokemons] = useState([])
-    const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
+        const style = type + " thumb-container";
+        
+        //pegando id com o botao adicionar
+        let botao 
+        if(idPokemon.find(element => element == id)){
+           botao = <button disabled={true} onClick={()=> addToPokedex(id)} >adicionar</button>
 
-    const getAllPokemons = async () => {
-        const res = await fetch(loadMore)
-        const data = await res.json()
+        }else{
+            botao = <button  onClick={()=> addToPokedex(id)} >adicionar</button>
 
-        setLoadMore(data.next)
-
-        function createPokemonObject(results) {
-            results.forEach(async pokemon => {
-                const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-                const data = await res.json()
-                setAllPokemons(currentList => [...currentList, data])
-            })
         }
-        createPokemonObject(data.results)
-        console.log(data.results)
-    }
-
 
     const Rend = ({ id, image, name, type }) => {
         const style = type + " Thumb";
 
+      //Renderizando a lista em card
         return (
-            <Card className={style}>
-                <Number className="number"><Small>nº 0{id}</Small></Number>
-                <Image src={image} alt={name} />
-                <Detail className="detail-wrapper">
+            <div className={style}>
+                <div className="number"><small>Carde Nº{id}</small></div>
+                <img src={image} alt={name} />
+                <div className="detail-wrapper">
                     <h3>{name}</h3>
                     <small>Type: {type}</small>
-                    <Button onClick={() => goToPokedex(navigate)}>adicionar</Button>
+                    {botao}
                     <Button onClick={() => goToDetailPage(navigate)}>detalhes</Button>
-                </Detail>
-            </Card>
+
+                </div>
+            </div>
+
         );
     }
 
