@@ -9,6 +9,7 @@ import { CardMoves } from '../../components/CardMoves'
 import { CardSprites } from '../../components/CardSprites'
 import { Main, PokemonCard, Description } from './styled'
 
+
 function DetailPage() {
 
     const navigate = useNavigate()
