@@ -1,8 +1,9 @@
 
 import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import GlobalStateContext from '../../context/GlobalContext';
-import {goToDetailPage, goToPokedex} from '../../routes/coordinator'
+import { goToDetailPage, goToPokedex } from '../../routes/coordinator';
+import { Card, Number, Small, Image, Detail, Button, App, Title, Pokemon, All, Load } from './styled';
 
 
 function Home() {
@@ -34,7 +35,7 @@ function Home() {
 
         }
 
-        //Renderizando a lista em card
+      //Renderizando a lista em card
         return (
             <div className={style}>
                 <div className="number"><small>Carde Nº{id}</small></div>
@@ -42,20 +43,26 @@ function Home() {
                 <div className="detail-wrapper">
                     <h3>{name}</h3>
                     <small>Type: {type}</small>
-                    {botao}
-                    <button>detalhes</button>
 
+                    {botao}
+                    <button onClick={() => pokemonDetail(id)} >detalhes</button>
                 </div>
             </div>
+
         );
     }
+    
+    const pokemonDetail = (id) => {
+        goToDetailPage(navigate, id)
+    }
+
 
     return (
         <div>
-            <div className="app-container">
-                <h1>Lista de Pokémons</h1>
-                <div className="pokemon-container">
-                    <div className="all-container">
+            <App className="app-container">
+                <Title>Lista de Pokémons</Title>
+                <Pokemon className="pokemon-container">
+                    <All className="all-container">
                         {allPokemons.map((pokemonStats, index) =>
                             <Rend
                                 key={index}
@@ -64,19 +71,14 @@ function Home() {
                                 name={pokemonStats.name}
                                 type={pokemonStats.types[0].type.name}
                             />)}
-                    </div>
-                    <button className="load-more" onClick={() => getAllPokemons()}>Carregando..</button>
-                </div>
-            </div>
-
-            <button className="go" onClick={() => goToDetailPage(navigate)}>DetailPage</button>
-            <button className="go" onClick={() => goToPokedex(navigate)}>Pokedex</button>
+                    </All>
+                    <Load className="load-more" onClick={() => getAllPokemons()}>Carregando..</Load>
+                    <Load className="load-more" onClick={() => goToPokedex()}>Pokedex..</Load>
+                </Pokemon>
+            </App>
         </div>
     );
 }
 
+
 export default Home;
-
-
-
-
