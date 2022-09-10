@@ -2,7 +2,7 @@ import React, { useContext } from  'react';
 import GlobalStateContext from '../../context/GlobalContext';
 import { useNavigate } from 'react-router-dom'
 import {goToHome, goToDetailPage} from '../../routes/coordinator'
-import { PokemonImagem } from '../Home/styled';
+import { PokemonImagem, Title, Pokemon, All } from './styled';
 
 function Pokedex() {
 
@@ -26,7 +26,9 @@ function Pokedex() {
         return (
             <div className={style}>
                 <div className="number"><small>Carde Nº{pokemon.id}</small></div>
+
                 <PokemonImagem><img src={pokemon.image} alt={pokemon.name} /></PokemonImagem>
+
                 <div className="detail-wrapper">
                     <h3>{pokemon.name}</h3>
                     <small>Type: {pokemon.type}</small>
@@ -34,6 +36,7 @@ function Pokedex() {
                     <button onClick={() => removePokemon(pokemon)} >Remover</button>
                     <button onClick={() => pokemonDetail(pokemon.id)} >detalhes</button>
                 </div>
+
             </div>
         );
     }
@@ -48,12 +51,12 @@ function Pokedex() {
 
     return (
         <div className="app-container">
-            <h1>Pokedex</h1>
-                 <div>
-                    {showPokedex}
-                </div>
-                <button className="go"  onClick={() => goToDetailPage(navigate)}>DetailPage</button>
-                <button className="go"  onClick={() => goToHome(navigate)}>Home</button>
+            <Title>Pokedex <button className="go"  onClick={() => goToHome(navigate)}>Home</button></Title>
+                <Pokemon>
+                    <All>
+                        {showPokedex}
+                    </All>
+                </Pokemon>
         </div>
     )
 }

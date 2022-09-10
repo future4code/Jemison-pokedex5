@@ -98,8 +98,13 @@ export const Load = styled.div`
   padding: 0.5rem 1.5rem;
   min-width: 20%;
   margin-top: 1rem;
-  cursor: pointer;
+  margin-bottom: 1rem;
+  cursor: progress;
   align-items: center;
   justify-content: center;
   text-align: center;
+
+  :hover{
+    background: DarkGrey;
+  }
 `

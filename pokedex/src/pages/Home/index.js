@@ -11,15 +11,27 @@ function Home() {
     //informações vindo do globalStates
     const {
         allPokemons,
-        idPokemon,
         getAllPokemons,
-        addToPokedex
+        addToPokedex,
+        pokedex,
     } = useContext(GlobalStateContext);
 
     //renderizando os pokemons
     const Rend = ({ id, image, name, type }) => {
 
         const style = type + " thumb-container";
+
+        //mapeando a pokedex para extrair o id
+        const mapPokedex = pokedex.map((item) => {
+           return (item.id)
+        })
+               //pegando id com o botao adicionar
+               let botao
+               if (mapPokedex.find(element => element == id)) {
+                   botao = <button disabled={true} onClick={() => addToPokedex({ id, image, name, type })} >adicionar</button>
+                } else {
+                   botao = <button onClick={() => addToPokedex({ id, image, name, type })} >adicionar</button>
+               }
 
         //Renderizando a lista em card
         return (
@@ -29,8 +41,7 @@ function Home() {
                 <div className="detail-wrapper">
                     <h3>{name}</h3>
                     <small>Type: {type}</small>
-
-                    <button onClick={() => addToPokedex({ id, image, name, type })} >adicionar</button>
+                    {botao}
                     <button onClick={() => pokemonDetail(id)} >detalhes</button>
                 </div>
             </div>
@@ -58,7 +69,7 @@ function Home() {
                                 type={pokemonStats.types[0].type.name}
                             />)}
                     </All>
-                    <Load className="load-more" onClick={() => getAllPokemons()}>Carregando..</Load>
+                    <Load onClick={() => getAllPokemons()}>Carregando..</Load>
                 </Pokemon>
             </div>
 
