@@ -31,16 +31,17 @@ function Pokedex() {
           });
     }
 
-    const Card = ({image, name, type}) =>{
+    const Card = () =>{
         if(pokedex && pokedex){ 
-                <div>
-                <img src={image} alt={name} />
-                <h3>{name}</h3>
-                <p>Type: {type}</p>
-                </div>
+                return (<Card
+                    // image={pokedex.sprites.other.dream_world.front_default}
+                    name={pokedex.name}
+                    // type={pokedex.types[0].type.name}
+                    />)
             }else{ 
                 <p>Algo deu errado</p>
              }
+        
     }
     console.log(pokedex)
 
@@ -48,13 +49,17 @@ function Pokedex() {
         <div>
             <h1>Pokedex</h1>
  
-                <div>
-                <Card
+            <Card> 
+            <p> {pokedex.name} </p>
+            </Card>
+
+                 <div>
+                {/* {pokedex && pokedex && <Card
                 image={pokedex.sprites.other.dream_world.front_default}
                 name={pokedex.name}
                 type={pokedex.types[0].type.name}
-                />
-                 
+                />} */}
+                {/* //  {pokedex && Card} */}
                 <button onClick={() => removePokemon(pokedex)} >Remover</button>
                 </div>
 

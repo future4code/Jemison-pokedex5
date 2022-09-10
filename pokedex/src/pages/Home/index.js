@@ -8,9 +8,9 @@ import { Card, Number, Small, Image, Detail, Button, App, Title, Pokemon, All, L
 
 function Home() {
     const navigate = useNavigate()
-    
+
     //informações vindo do globalStates
-    const  {
+    const {
         allPokemons,
         idPokemon,
         getAllPokemons,
@@ -18,27 +18,24 @@ function Home() {
     } = useContext(GlobalStateContext);
 
     //sere para ver se esta pegando o id para pokedex
-    console.log( `Ola ${idPokemon}`) 
-    
+    console.log(`Ola ${idPokemon}`)
+
     //renderizando os pokemons
-    const Rend = ({ id, image, name, type}) => {
+    const Rend = ({ id, image, name, type }) => {
 
         const style = type + " thumb-container";
-        
-        //pegando id com o botao adicionar
-        let botao 
-        if(idPokemon.find(element => element == id)){
-           botao = <button disabled={true} onClick={()=> addToPokedex(id)} >adicionar</button>
 
-        }else{
-            botao = <button  onClick={()=> addToPokedex(id)} >adicionar</button>
+        //pegando id com o botao adicionar
+        let botao
+        if (idPokemon.find(element => element == id)) {
+            botao = <button disabled={true} onClick={() => addToPokedex(id)} >adicionar</button>
+
+        } else {
+            botao = <button onClick={() => addToPokedex(id)} >adicionar</button>
 
         }
 
-    const Rend = ({ id, image, name, type }) => {
-        const style = type + " Thumb";
-
-      //Renderizando a lista em card
+        //Renderizando a lista em card
         return (
             <div className={style}>
                 <div className="number"><small>Carde Nº{id}</small></div>
@@ -54,7 +51,7 @@ function Home() {
 
         );
     }
-    
+
     const pokemonDetail = (id) => {
         goToDetailPage(navigate, id)
     }
@@ -63,7 +60,7 @@ function Home() {
     return (
         <div>
             <App className="app-container">
-                <Title>Lista de Pokémons</Title>
+                <Title>Lista de Pokémons <button className="go" onClick={() => goToPokedex(navigate)}>Pokedex</button></Title>
                 <Pokemon className="pokemon-container">
                     <All className="all-container">
                         {allPokemons.map((pokemonStats, index) =>
@@ -78,6 +75,7 @@ function Home() {
                     <Load className="load-more" onClick={() => getAllPokemons()}>Carregando..</Load>
                 </Pokemon>
             </App>
+
         </div>
     );
 }
