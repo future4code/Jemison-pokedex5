@@ -32,16 +32,17 @@ function Pokedex() {
           });
     }
 
-    const Card = ({image, name, type}) =>{
+    const Card = () =>{
         if(pokedex && pokedex){ 
-                <div>
-                <img src={image} alt={name} />
-                <h3>{name}</h3>
-                <p>Type: {type}</p>
-                </div>
-            }else if(pokedex && pokedex === 0){ 
+                return (<Card
+                    // image={pokedex.sprites.other.dream_world.front_default}
+                    name={pokedex.name}
+                    // type={pokedex.types[0].type.name}
+                    />)
+            }else{ 
                 <p>Algo deu errado</p>
              }
+        
     }
     console.log(idPokemon)
     console.log(getPokedex)
@@ -50,17 +51,20 @@ function Pokedex() {
     return (
         <div className="app-container">
             <h1>Pokedex</h1>
-                <div>
-                    <div className="pokemon-container">
-                        <div className="all-container">
-                        <Card
-                            image={pokedex.sprites.other.dream_world.front_default}
-                            name={pokedex.name}
-                            type={pokedex.types[0].type.name}
-                            />
-                        </div>   
-                            <button onClick={() => removePokemon(pokedex)} >Remover</button>
-                    </div>
+
+ 
+            <Card> 
+            <p> {pokedex.name} </p>
+            </Card>
+
+                 <div>
+                {/* {pokedex && pokedex && <Card
+                image={pokedex.sprites.other.dream_world.front_default}
+                name={pokedex.name}
+                type={pokedex.types[0].type.name}
+                />} */}
+                {/* //  {pokedex && Card} */}
+                <button onClick={() => removePokemon(pokedex)} >Remover</button>
                 </div>
 
                 <button className="go"  onClick={() => goToDetailPage(navigate)}>DetailPage</button>
