@@ -75,16 +75,7 @@ h1 {
   box-shadow: 2px 1px 5px 0px rgba(50, 50, 50, 1);
 }
 
-.app-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 3rem 0.5rem;
-}
-
-.pokemon-container {
+/* .pokemon-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,7 +87,7 @@ h1 {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .thumb-container {
   display: flex;

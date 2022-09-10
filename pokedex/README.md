@@ -12,16 +12,16 @@ Nome dos integrantes:
 
 - Roberta Vieira de Melo
 
-Link do Surge: www.link.com.br
+Link do Surge: damaging-point.surge.sh
 
 ✅ O que funciona:
-- Listagem dos pokémons: Listar os pokémons com o uso da API.
+- Site funcional
 
  - 
 
 ❌ O que não funciona: 
-- Item 3
-- Item 4
+- Falta styled
+- 
 
 ## 🚀 Tecnologias
 

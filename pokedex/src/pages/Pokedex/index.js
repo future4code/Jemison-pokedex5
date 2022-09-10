@@ -3,6 +3,8 @@ import React, { useEffect, useState, useContext } from  'react';
 import GlobalStateContext from '../../context/GlobalContext';
 import { useNavigate } from 'react-router-dom'
 import {goToHome, goToDetailPage} from '../../routes/coordinator'
+import { PokemonImagem } from '../Home/styled';
+
 
 function Pokedex() {
 
@@ -10,57 +12,47 @@ function Pokedex() {
 
     const  {
         pokedex,
-        setPokedex,
-        idPokemon,
-        removePokemon
+        removePokemon,
     } = useContext(GlobalStateContext);
     
 
-    useEffect(() => {
-        getPokedex()
-    }, [])
-
-    const getPokedex = () =>{
-        axios
-          .get(`https://pokeapi.co/api/v2/pokemon/1/`)
-          .then((response) => {
-            setPokedex(response.data);
-          })
-          .catch((error) => {
-            console.log("Algo deu errado", error);
-          });
+    const pokemonDetail = (id) => {
+        goToDetailPage(navigate, id)
     }
 
-    const Card = () =>{
-        if(pokedex && pokedex){ 
-                return (<Card
-                    // image={pokedex.sprites.other.dream_world.front_default}
-                    name={pokedex.name}
-                    // type={pokedex.types[0].type.name}
-                    />)
-            }else{ 
-                <p>Algo deu errado</p>
-             }
-        
+    const Rend = (pokemon={}) => {
+
+        const style = pokemon.type + " thumb-container";
+
+        //Renderizando a lista em card
+        return (
+            <div className={style}>
+                <div className="number"><small>Carde Nº{pokemon.id}</small></div>
+                <PokemonImagem><img src={pokemon.image} alt={pokemon.name} /></PokemonImagem>
+                <div className="detail-wrapper">
+                    <h3>{pokemon.name}</h3>
+                    <small>Type: {pokemon.type}</small>
+
+                    <button onClick={() => removePokemon(pokemon)} >Remover</button>
+                    <button onClick={() => pokemonDetail(pokemon.id)} >detalhes</button>
+                </div>
+            </div>
+        );
     }
-    console.log(pokedex)
+
+    const showPokedex = pokedex.map((pokemon) => {
+        return (
+            <Rend 
+            {...pokemon}
+            />
+        )
+    })
 
     return (
         <div>
             <h1>Pokedex</h1>
- 
-            <Card> 
-            <p> {pokedex.name} </p>
-            </Card>
-
                  <div>
-                {/* {pokedex && pokedex && <Card
-                image={pokedex.sprites.other.dream_world.front_default}
-                name={pokedex.name}
-                type={pokedex.types[0].type.name}
-                />} */}
-                {/* //  {pokedex && Card} */}
-                <button onClick={() => removePokemon(pokedex)} >Remover</button>
+                    {showPokedex}
                 </div>
 
                 <button onClick={() => goToDetailPage(navigate)}>DetailPage</button>
