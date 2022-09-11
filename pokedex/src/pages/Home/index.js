@@ -28,7 +28,7 @@ function Home() {
                //pegando id com o botao adicionar
                let botao
                if (mapPokedex.find(element => element == id)) {
-                   botao = <button disabled={true} onClick={() => addToPokedex({ id, image, name, type })} >adicionar</button>
+                   botao = <button disabled={true} >adicionar</button>
                 } else {
                    botao = <button onClick={() => addToPokedex({ id, image, name, type })} >adicionar</button>
                }
@@ -55,7 +55,6 @@ function Home() {
 
 
     return (
-
             <div>
                 <Title>Lista de Pokémons <button className="go" onClick={() => goToPokedex(navigate)}>Pokedex</button></Title>
                 <Pokemon>
@@ -72,7 +71,6 @@ function Home() {
                     <Load onClick={() => getAllPokemons()}>Carregando..</Load>
                 </Pokemon>
             </div>
-
     );
 }
 

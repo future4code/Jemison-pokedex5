@@ -133,6 +133,11 @@ h3 {
   width: 100%;
 }
 
+.detail-wrapper button:disabled{
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
 .detail-wrapper button {
   color: rgb(22, 22, 22);
   padding: .5rem;
@@ -166,6 +171,7 @@ h3 {
   margin-top: 1rem;
   margin-bottom: 1rem;
   margin-left: 542px;
+  color: white;
 
   border: none;
   border-radius: 0.2rem;
@@ -177,5 +183,6 @@ h3 {
 
 .go:hover {
   background-color: rgba(83, 13, 13, 0.185);
-  color: rgb(95, 12, 12);
+  color: white;
+
 }
