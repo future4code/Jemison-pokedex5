@@ -7,7 +7,7 @@ import { CardStatus } from '../../components/CardStatus'
 import { CardType } from '../../components/CardType'
 import { CardMoves } from '../../components/CardMoves'
 import { CardSprites } from '../../components/CardSprites'
-import { Main, PokemonCard, Description } from './styled'
+import { Main, PokemonCard, Description, Title } from './styled'
 
 
 function DetailPage() {
@@ -44,7 +44,7 @@ function DetailPage() {
     const getPokemonTypes = pokemon.types.map((pokeType) => {
         return (
             <div>
-                {pokeType.type.name}
+                {pokeType.type.name.toUpperCase()}
             </div>
         )
     })
@@ -58,34 +58,38 @@ function DetailPage() {
     })
 
     return (
-        <Main>
-            <div>
-                <CardSprites>
-                    <img src={pokemon.sprites.front_default} />
-                    <img src={pokemon.sprites.back_default} />
-                </CardSprites>
-            </div>
-            <PokemonCard>
+        <div>
+            <Title>Detalhes do Pokemon <button className="go" onClick={() => navigate(-1)}>Voltar</button></Title>
+            <Main>
                 <div>
-                    <CardStatus>
-                        <Description>STATUS</Description>
-                        {getPokemonStatus}
-                    </CardStatus>
-
-                    <CardType>
-                        <Description>TYPE</Description>
-                        {getPokemonTypes}
-                    </CardType>
+                    <CardSprites>
+                        <img src={pokemon.sprites.front_default} />
+                        <img src={pokemon.sprites.back_default} />
+                    </CardSprites>
                 </div>
+                <PokemonCard>
+                    <div>
+                        <CardStatus>
+                            <Description>STATUS</Description>
+                            {getPokemonStatus}
+                        </CardStatus>
 
-                <div>
-                    <CardMoves>
-                        <Description>MOVES</Description>
-                        {getPokemonMoves}
-                    </CardMoves>
-                </div>
-            </PokemonCard>
-        </Main>
+                        <CardType>
+                            <Description>TYPE</Description>
+                            {getPokemonTypes}
+                        </CardType>
+                    </div>
+
+                    <div>
+                        <CardMoves>
+                            <Description>MOVES</Description>
+                            {getPokemonMoves}
+                        </CardMoves>
+                    </div>
+                </PokemonCard>
+            </Main>
+
+        </div>
     )
 }
 

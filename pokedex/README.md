@@ -12,15 +12,15 @@ Nome dos integrantes:
 
 - Roberta Vieira de Melo
 
-Link do Surge: damaging-point.surge.sh
+Link do Surge: https://ahead-edge.surge.sh/
 
 ✅ O que funciona:
 - Site funcional
 
- - 
+- 
 
 ❌ O que não funciona: 
-- Falta styled
+- 
 - 
 
 ## 🚀 Tecnologias
