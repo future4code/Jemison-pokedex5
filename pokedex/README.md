@@ -17,16 +17,16 @@ Link do Surge: https://ahead-edge.surge.sh/
 ✅ O que funciona:
 - Site funcional
 
-- 
+
 
 ❌ O que não funciona: 
-- 
-- 
+
+
 
 ## 🚀 Tecnologias
 
 - React JS
 - Styled-components
 - React Router Dom
-- 
+
 
